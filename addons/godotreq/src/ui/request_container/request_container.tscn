@@ -1,0 +1,188 @@
+[gd_scene load_steps=11 format=3 uid="uid://drn8wuaqo5hxs"]
+
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/request_container/request_container.gd" id="1_tcexy"]
+[ext_resource type="StyleBox" uid="uid://betvmnwdiapri" path="res://addons/godotreq/src/dock/menu_btn_request.tres" id="2_1eymm"]
+[ext_resource type="StyleBox" uid="uid://ck2m7kk3hxvvv" path="res://addons/godotreq/resources/tab_options.tres" id="3_64d1u"]
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/scripts/http_method_menu.gd" id="3_gd4fg"]
+[ext_resource type="StyleBox" uid="uid://dtbrxnt1x7sxx" path="res://addons/godotreq/resources/tab_options_without_border.tres" id="4_v7wxq"]
+[ext_resource type="PackedScene" uid="uid://byg0q5kjwqbt5" path="res://addons/godotreq/src/ui/response_body/response_body.tscn" id="7_3vn5i"]
+[ext_resource type="PackedScene" uid="uid://je0cb56f0a0g" path="res://addons/godotreq/src/ui/table_component/table_component.tscn" id="8_7obmq"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vovcj"]
+color = Color(0.568627, 0.568627, 0.568627, 1)
+thickness = 4
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csjgk"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 70.0
+content_margin_bottom = 20.0
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.596078, 0.596078, 0.596078, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_568hl"]
+content_margin_left = 30.0
+content_margin_top = 20.0
+content_margin_right = 30.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.52549, 0.87451, 1)
+
+[node name="RequestContainer" type="VBoxContainer"]
+offset_right = 1081.0
+offset_bottom = 435.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 18
+script = ExtResource("1_tcexy")
+
+[node name="RequestControl" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RequestControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RequestControl/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HttpMenuButton" type="MenuButton" parent="RequestControl/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("2_1eymm")
+theme_override_styles/pressed = ExtResource("2_1eymm")
+theme_override_styles/hover = ExtResource("2_1eymm")
+theme_override_styles/disabled = ExtResource("2_1eymm")
+theme_override_styles/focus = ExtResource("2_1eymm")
+text = "GET"
+flat = false
+item_count = 9
+popup/item_0/text = "GET"
+popup/item_0/id = 0
+popup/item_1/text = "HEAD"
+popup/item_1/id = 1
+popup/item_2/text = "POST"
+popup/item_2/id = 2
+popup/item_3/text = "PUT"
+popup/item_3/id = 3
+popup/item_4/text = "DELETE"
+popup/item_4/id = 4
+popup/item_5/text = "OPTIONS"
+popup/item_5/id = 5
+popup/item_6/text = "TRACE"
+popup/item_6/id = 6
+popup/item_7/text = "CONNECT"
+popup/item_7/id = 7
+popup/item_8/text = "PATCH"
+popup/item_8/id = 8
+script = ExtResource("3_gd4fg")
+
+[node name="VSeparator" type="VSeparator" parent="RequestControl/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_vovcj")
+
+[node name="RequestUrl" type="LineEdit" parent="RequestControl/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_csjgk")
+
+[node name="Send" type="Button" parent="RequestControl/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_568hl")
+text = "Send"
+
+[node name="RequestOptions" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 350)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/side_margin = 10
+theme_override_constants/icon_separation = 20
+theme_override_styles/tab_selected = ExtResource("3_64d1u")
+theme_override_styles/tab_hovered = ExtResource("3_64d1u")
+theme_override_styles/tab_unselected = ExtResource("4_v7wxq")
+theme_override_styles/tab_disabled = ExtResource("4_v7wxq")
+
+[node name="Params" type="TabBar" parent="RequestOptions"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RequestOptions/Params"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RequestOptions/Params/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="RequestOptions/Params/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="RequestOptions/Params/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Query params"
+
+[node name="ParamComponent" parent="RequestOptions/Params/MarginContainer/VBoxContainer" instance=ExtResource("8_7obmq")]
+layout_mode = 2
+
+[node name="Headers" type="TabBar" parent="RequestOptions"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RequestOptions/Headers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RequestOptions/Headers/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="RequestOptions/Headers/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="RequestOptions/Headers/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Headers
+"
+
+[node name="HeaderComponent" parent="RequestOptions/Headers/MarginContainer/VBoxContainer" instance=ExtResource("8_7obmq")]
+layout_mode = 2
+
+[node name="Body" type="TabBar" parent="RequestOptions"]
+visible = false
+layout_mode = 2
+
+[node name="RequestBody" parent="RequestOptions/Body" instance=ExtResource("7_3vn5i")]
+layout_mode = 1
+
+[connection signal="pressed" from="RequestControl/HBoxContainer/Send" to="." method="_on_send_pressed"]

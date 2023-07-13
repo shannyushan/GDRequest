@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://je0cb56f0a0g"]
+
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/table_component/table_component.gd" id="1_53jpj"]
+[ext_resource type="StyleBox" uid="uid://dlk2nhwn6nj31" path="res://addons/godotreq/resources/query_params_panel.tres" id="1_bn2sp"]
+[ext_resource type="PackedScene" uid="uid://bt3y50wsaewdy" path="res://addons/godotreq/src/ui/table_row_component/table_row_component.tscn" id="2_vcwjm"]
+
+[node name="TableComponent" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+script = ExtResource("1_53jpj")
+TableRowComponent = ExtResource("2_vcwjm")
+
+[node name="Placeholder" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="CheckBoxContainer" type="PanelContainer" parent="Placeholder"]
+custom_minimum_size = Vector2(51, 2.08165e-12)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_bn2sp")
+
+[node name="KeyContainer" type="PanelContainer" parent="Placeholder"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_bn2sp")
+
+[node name="Key" type="LineEdit" parent="Placeholder/KeyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_uneditable_color = Color(0.894118, 0.894118, 0.894118, 1)
+text = "Key"
+editable = false
+
+[node name="ValueContainer" type="PanelContainer" parent="Placeholder"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_bn2sp")
+
+[node name="Value" type="LineEdit" parent="Placeholder/ValueContainer"]
+layout_mode = 2
+theme_override_colors/font_uneditable_color = Color(0.894118, 0.894118, 0.894118, 1)
+text = "Value"
+editable = false
+
+[node name="DeleteControl" type="PanelContainer" parent="Placeholder"]
+custom_minimum_size = Vector2(50, 2.08165e-12)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_bn2sp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TableContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="TableComponent" parent="ScrollContainer/TableContainer" instance=ExtResource("2_vcwjm")]
+layout_mode = 2

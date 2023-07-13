@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://btbgiunuimely"]
+
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/response_body/raw.gd" id="1_anent"]
+
+[node name="raw" type="TabBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_anent")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 60
+
+[node name="CodeEdit" type="CodeEdit" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="MenuButton" type="MenuButton" parent="Control"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "HTML"
+item_count = 2
+popup/item_0/text = "HTML"
+popup/item_0/id = 0
+popup/item_1/text = "JSON"
+popup/item_1/id = 1

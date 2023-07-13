@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt3y50wsaewdy"]
+
+[ext_resource type="StyleBox" uid="uid://dlk2nhwn6nj31" path="res://addons/godotreq/resources/query_params_panel.tres" id="1_r12ii"]
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/table_row_component/table_row_component.gd" id="1_xm46h"]
+
+[node name="TableComponent" type="HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 42)
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+script = ExtResource("1_xm46h")
+
+[node name="CheckBoxContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(51, 2.08165e-12)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_r12ii")
+
+[node name="CheckBox" type="CheckBox" parent="CheckBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="KeyContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_r12ii")
+
+[node name="Key" type="LineEdit" parent="KeyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
+
+[node name="ValueContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_r12ii")
+
+[node name="Value" type="LineEdit" parent="ValueContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
+
+[node name="DeleteControl" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(50, 2.08165e-12)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_r12ii")
+
+[node name="DeleteButton" type="Button" parent="DeleteControl"]
+layout_mode = 2
+
+[connection signal="toggled" from="CheckBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="text_changed" from="KeyContainer/Key" to="." method="_on_key_text_changed"]
+[connection signal="text_changed" from="ValueContainer/Value" to="." method="_on_value_text_changed"]
+[connection signal="pressed" from="DeleteControl/DeleteButton" to="." method="_on_delete_button_pressed"]

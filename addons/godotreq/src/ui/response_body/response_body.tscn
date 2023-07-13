@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://byg0q5kjwqbt5"]
+
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/response_body/response_body.gd" id="1_b3ysh"]
+[ext_resource type="PackedScene" uid="uid://je0cb56f0a0g" path="res://addons/godotreq/src/ui/table_component/table_component.tscn" id="1_ulni6"]
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/response_body/none.gd" id="2_o8kc6"]
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/response_body/form-data.gd" id="3_osa2e"]
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/response_body/x-www-form-urlencoded.gd" id="5_tnehe"]
+[ext_resource type="PackedScene" uid="uid://btbgiunuimely" path="res://addons/godotreq/src/ui/request_raw/request_raw.tscn" id="6_fx26p"]
+
+[node name="RequestBody" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_b3ysh")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+theme_override_constants/side_margin = 0
+
+[node name="none" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+script = ExtResource("2_o8kc6")
+
+[node name="raw" parent="TabContainer" instance=ExtResource("6_fx26p")]
+visible = false
+layout_mode = 2
+
+[node name="x-www-form-urlencoded" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("5_tnehe")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/x-www-form-urlencoded"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+
+[node name="TableComponent" parent="TabContainer/x-www-form-urlencoded/MarginContainer" instance=ExtResource("1_ulni6")]
+visible = false
+layout_mode = 2
+
+[node name="form-data" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("3_osa2e")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/form-data"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 12
+
+[node name="TableComponent" parent="TabContainer/form-data/MarginContainer" instance=ExtResource("1_ulni6")]
+visible = false
+layout_mode = 2

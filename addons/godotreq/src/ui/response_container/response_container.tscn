@@ -1,0 +1,220 @@
+[gd_scene load_steps=7 format=3 uid="uid://lswcttpuygq8"]
+
+[ext_resource type="StyleBox" uid="uid://ck2m7kk3hxvvv" path="res://addons/godotreq/resources/tab_options.tres" id="1_t7pup"]
+[ext_resource type="Script" path="res://addons/godotreq/src/ui/response_container/response_container.gd" id="1_xxxpq"]
+[ext_resource type="StyleBox" uid="uid://dtbrxnt1x7sxx" path="res://addons/godotreq/resources/tab_options_without_border.tres" id="2_syt0v"]
+[ext_resource type="StyleBox" uid="uid://bcendjqb5xh5v" path="res://addons/godotreq/resources/tab_response_active.tres" id="4_aarqq"]
+[ext_resource type="PackedScene" uid="uid://je0cb56f0a0g" path="res://addons/godotreq/src/ui/table_component/table_component.tscn" id="5_htq4a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4cjn"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="ResponseContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_xxxpq")
+
+[node name="HBoxContainer" type="Panel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_styles/tab_selected = ExtResource("1_t7pup")
+theme_override_styles/tab_hovered = ExtResource("1_t7pup")
+theme_override_styles/tab_unselected = ExtResource("2_syt0v")
+theme_override_styles/tab_disabled = ExtResource("2_syt0v")
+
+[node name="Body" type="TabBar" parent="HBoxContainer/PanelContainer/TabContainer"]
+layout_mode = 2
+drag_to_rearrange_enabled = true
+
+[node name="responsebody" type="CodeEdit" parent="HBoxContainer/PanelContainer/TabContainer/Body"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+line_folding = true
+gutters_draw_line_numbers = true
+indent_automatic = true
+auto_brace_completion_highlight_matching = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer"]
+layout_mode = 2
+theme_override_styles/tab_selected = ExtResource("4_aarqq")
+theme_override_styles/tab_hovered = ExtResource("4_aarqq")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_v4cjn")
+
+[node name="Raw" type="TabBar" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Raw"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JSON" type="TabBar" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/JSON"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/JSON/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="JSON" type="CodeEdit" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/JSON/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+scroll_smooth = true
+line_folding = true
+gutters_draw_line_numbers = true
+gutters_zero_pad_line_numbers = true
+gutters_draw_fold_gutter = true
+
+[node name="Preview" type="TabBar" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Not Available"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Headers" type="TabBar" parent="HBoxContainer/PanelContainer/TabContainer"]
+visible = false
+layout_mode = 2
+drag_to_rearrange_enabled = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/TabContainer/Headers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 12
+
+[node name="ResponseHeaders" parent="HBoxContainer/PanelContainer/TabContainer/Headers/MarginContainer" instance=ExtResource("5_htq4a")]
+layout_mode = 2
+is_editable = false
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -392.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 40
+
+[node name="ResponseDetail" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ResponseCode" type="HBoxContainer" parent="HBoxContainer/MarginContainer/ResponseDetail"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/ResponseDetail/ResponseCode"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_font_sizes/font_size = 20
+text = "Status: "
+
+[node name="value" type="Label" parent="HBoxContainer/MarginContainer/ResponseDetail/ResponseCode"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.686275, 0.160784, 1)
+theme_override_font_sizes/font_size = 20
+text = "200 OK"
+
+[node name="ResponseTime" type="HBoxContainer" parent="HBoxContainer/MarginContainer/ResponseDetail"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/ResponseDetail/ResponseTime"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_font_sizes/font_size = 20
+text = "Time"
+
+[node name="value" type="Label" parent="HBoxContainer/MarginContainer/ResponseDetail/ResponseTime"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.686275, 0.160784, 1)
+theme_override_font_sizes/font_size = 20
+text = "400 ms"
+
+[node name="ResponseSize" type="HBoxContainer" parent="HBoxContainer/MarginContainer/ResponseDetail"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/ResponseDetail/ResponseSize"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_font_sizes/font_size = 20
+text = "Size: "
+
+[node name="value" type="Label" parent="HBoxContainer/MarginContainer/ResponseDetail/ResponseSize"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.686275, 0.160784, 1)
+theme_override_font_sizes/font_size = 20
+text = "100 KB"

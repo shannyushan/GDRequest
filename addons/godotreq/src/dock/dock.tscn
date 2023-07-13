@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqdavqxd4mlv2"]
+
+[ext_resource type="Texture2D" uid="uid://cn8xonbnd14pf" path="res://addons/godotreq/assets/plus.svg" id="1_c44b8"]
+[ext_resource type="Script" path="res://addons/godotreq/src/dock/scripts/godot_request.gd" id="1_ogdlx"]
+[ext_resource type="StyleBox" uid="uid://b8cfo8fqbpqh5" path="res://addons/godotreq/resources/tab_active.tres" id="2_pujw1"]
+[ext_resource type="StyleBox" uid="uid://cl8i2kgbgtbvg" path="res://addons/godotreq/src/dock/tab_inactive.tres" id="3_7t6mc"]
+[ext_resource type="StyleBox" uid="uid://d20y1v7aijnpl" path="res://addons/godotreq/resources/tab_panel.tres" id="3_mf005"]
+[ext_resource type="StyleBox" uid="uid://b7gga47qk6v32" path="res://addons/godotreq/resources/tab_background.tres" id="4_lvd8a"]
+[ext_resource type="PackedScene" uid="uid://cafvqdi25u050" path="res://addons/godotreq/src/ui/request_panel/request_panel.tscn" id="7_qi7t0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfgo1"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="GodotRequest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ogdlx")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfgo1")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+theme_override_constants/minimum_grab_thickness = 100
+theme_override_constants/autohide = 0
+split_offset = 400
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/ScrollContainer/HSplitContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 2.08165e-12)
+layout_mode = 2
+
+[node name="RequestTabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/ScrollContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(0.996078, 0.964706, 0.94902, 1)
+theme_override_colors/font_unselected_color = Color(0.705882, 0.690196, 0.709804, 1)
+theme_override_colors/drop_mark_color = Color(0.784314, 0, 0, 1)
+theme_override_constants/side_margin = 0
+theme_override_constants/icon_separation = 20
+theme_override_constants/outline_size = 0
+theme_override_icons/increment = ExtResource("1_c44b8")
+theme_override_styles/tab_selected = ExtResource("2_pujw1")
+theme_override_styles/tab_hovered = ExtResource("3_7t6mc")
+theme_override_styles/tab_unselected = ExtResource("3_7t6mc")
+theme_override_styles/tab_disabled = ExtResource("3_7t6mc")
+theme_override_styles/panel = ExtResource("3_mf005")
+theme_override_styles/tabbar_background = ExtResource("4_lvd8a")
+
+[node name="GodotRequest" parent="PanelContainer/MarginContainer/ScrollContainer/HSplitContainer/RequestTabContainer" instance=ExtResource("7_qi7t0")]
+layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+accept_gzip = false
+timeout = 7.0
+
+[connection signal="send_request" from="PanelContainer/MarginContainer/ScrollContainer/HSplitContainer/RequestTabContainer/GodotRequest" to="." method="_on_untitled_request_send_request"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
