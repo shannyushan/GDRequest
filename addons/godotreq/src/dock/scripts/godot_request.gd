@@ -58,6 +58,7 @@ func _on_untitled_request_send_request(
 	if p_request_headers != null && !p_request_headers.is_empty():
 		custom_header = get_packed_string_array_from_dict(p_request_headers)
 	
+	var request_body = "" if p_request_body["data"] == "" else p_request_body["data"]
 	
 	print("""
 	Request_type : %s 
@@ -70,7 +71,7 @@ func _on_untitled_request_send_request(
 		p_request_url,
 		query_string,
 		custom_header,
-		p_request_body
+		request_body
 	])
 	_request_sent_at =  Time.get_ticks_msec()
 	
@@ -78,7 +79,7 @@ func _on_untitled_request_send_request(
 		p_request_url,
 		custom_header,
 		p_request_type,
-		p_request_body
+		request_body
 	)
 
 

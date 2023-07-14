@@ -180,9 +180,7 @@ func _set_response_data(p_body: PackedByteArray, p_content_type: String ) -> voi
 	if content_type_split.size() < 1:
 		return
 	
-	print(content_type_split, "dsadbasidbasi")
-	if content_type_split[1] == "json":
-		print(" is json !!!!!")
+	if content_type_split[1] == "json" || content_type_split[1] == "javascript":
 		var response_body_json = JSON.parse_string(response_body)
 		
 		if response_body_json == null:

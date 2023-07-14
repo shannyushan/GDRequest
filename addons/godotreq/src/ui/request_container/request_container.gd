@@ -90,9 +90,10 @@ func on_send_request_btn_clicked():
 	
 	var request_url :String = _request_url.text
 	
-	var request_body : Dictionary = _request_body.get_request_body()
+	var request_body = _request_body.get_request_body()
 	
 	if request_body["data"] == "" and request_headers.has("Content-Type"):
+		
 		request_headers.erase("Content-Type")
 	if request_body["data"] != "":
 		request_headers["Content-Type"] = request_body["type"]

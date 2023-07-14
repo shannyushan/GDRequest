@@ -9,16 +9,31 @@ extends VBoxContainer
 
 
 func _ready():
-	default_row_component.component_edited.connect(_on_component_edited.bind(default_row_component))
+	default_row_component.component_edited.connect(
+		_on_component_edited.bind(default_row_component)
+	)
 	default_row_component.set_row_editable(is_editable)
 
 
-func set_default_data(p_default_datas : Array, p_is_editable: bool = is_editable) -> void:
+func set_default_data(
+	p_default_datas : Array,
+	p_is_editable: bool = is_editable
+) -> void:
+	
 	for default_data in p_default_datas:
-		if default_row_component && is_instance_valid(default_row_component) && default_data == p_default_datas[0]:
+		if (
+			default_row_component &&
+			is_instance_valid(default_row_component) &&
+			default_data == p_default_datas[0]
+		):
 			
-			if !default_row_component.is_connected("component_edited", _on_component_edited):
-				default_row_component.component_edited.connect(_on_component_edited.bind(default_row_component))
+			if !default_row_component.is_connected(
+				"component_edited",
+				_on_component_edited
+			):
+				default_row_component.component_edited.connect(
+					_on_component_edited.bind(default_row_component)
+				)
 			default_row_component.set_default_data(default_data)
 			default_row_component.set_is_checked(true)
 			default_row_component.set_row_editable(is_editable)
@@ -30,7 +45,7 @@ func set_default_data(p_default_datas : Array, p_is_editable: bool = is_editable
 		new_row_component.set_row_editable(is_editable)
 
 
-func _on_component_edited(p_self):
+func _on_component_edited(p_self) -> void:
 	var query_count = row_container.get_child_count() - 1
 	var last_child = row_container.get_child(query_count)
 	
