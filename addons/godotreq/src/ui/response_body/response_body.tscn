@@ -37,7 +37,6 @@ layout_mode = 2
 script = ExtResource("5_tnehe")
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/x-www-form-urlencoded"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +46,6 @@ grow_vertical = 2
 theme_override_constants/margin_top = 10
 
 [node name="TableComponent" parent="TabContainer/x-www-form-urlencoded/MarginContainer" instance=ExtResource("1_ulni6")]
-visible = false
 layout_mode = 2
 
 [node name="form-data" type="TabBar" parent="TabContainer"]
@@ -56,7 +54,6 @@ layout_mode = 2
 script = ExtResource("3_osa2e")
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/form-data"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,5 +63,4 @@ grow_vertical = 2
 theme_override_constants/margin_top = 12
 
 [node name="TableComponent" parent="TabContainer/form-data/MarginContainer" instance=ExtResource("1_ulni6")]
-visible = false
 layout_mode = 2

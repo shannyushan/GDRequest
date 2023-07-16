@@ -149,6 +149,8 @@ func on_response_received(
 	p_response_size,
 	p_response_time
 ) -> void:
+	_reset_previous_response_data()
+	
 	_set_response_code(p_response_code)
 	_set_response_time(p_response_time)
 	_set_response_size(p_response_size)
@@ -156,21 +158,28 @@ func on_response_received(
 	var response_header : Dictionary = _get_dict_response_header(p_headers)
 	
 	_set_response_headers(response_header)
-	var content_type = response_header.get("Content-Type")
 	
+	var content_type = response_header.get("Content-Type")
 	if content_type == null:
 		content_type = response_header.get("content-type")
-		
+	
+	if content_type == null:
+		#nothing is received
+		return
 	_set_response_data(p_body, content_type)
 
 
 func _set_response_data(p_body: PackedByteArray, p_content_type: String ) -> void:
+	_reset_previous_response_data()
+	
 	var content_type_split = p_content_type.split(";")[0]
 	var response_body: String = ""
+	var response_body_utf8: String = p_body.get_string_from_utf8()
 	
-	if !content_type_split.contains("image"):
-		response_body = p_body.get_string_from_utf8()
-		_raw_view.text = response_body
+	if content_type_split.contains("image"):
+		response_body_utf8 = p_body.get_string_from_utf32()
+	
+	_raw_view.text = response_body_utf8
 		
 	if p_content_type == "":
 		return
@@ -199,6 +208,13 @@ func _set_response_data(p_body: PackedByteArray, p_content_type: String ) -> voi
 		_preview_image.texture = image_texture
 
 
+func _reset_previous_response_data():
+	_raw_view.text = ""
+	_json_view.text = ""
+	_preview_image.texture = null
+	_response_headers.clear_all()
+
+
 func load_image_from_buffer(p_image_data: PackedByteArray, p_image_type)-> Image:
 	var image = Image.new()
 	var error
@@ -225,7 +241,6 @@ func _set_response_headers(p_headers: Dictionary) -> void:
 				"value": p_headers[header_key]
 			}
 		)
-	_response_headers.clear_all()
 	_response_headers.set_default_data(response_headers, false)
 
 
