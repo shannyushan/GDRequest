@@ -73,6 +73,7 @@ theme_override_styles/tabbar_background = ExtResource("4_lvd8a")
 layout_mode = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+use_threads = true
 accept_gzip = false
 timeout = 7.0
 

@@ -9,9 +9,7 @@ extends VBoxContainer
 
 
 func _ready():
-	default_row_component.component_edited.connect(
-		_on_component_edited.bind(default_row_component)
-	)
+	default_row_component.component_edited.connect(_on_component_edited)
 	default_row_component.set_row_editable(is_editable)
 
 
@@ -31,9 +29,8 @@ func set_default_data(
 				"component_edited",
 				_on_component_edited
 			):
-				default_row_component.component_edited.connect(
-					_on_component_edited.bind(default_row_component)
-				)
+				default_row_component.component_edited.connect(_on_component_edited)
+			
 			default_row_component.set_default_data(default_data)
 			default_row_component.set_is_checked(true)
 			default_row_component.set_row_editable(is_editable)
