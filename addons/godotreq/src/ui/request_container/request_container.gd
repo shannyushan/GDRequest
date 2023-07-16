@@ -28,7 +28,6 @@ var default_request_headers : Array = [
 	},
 	{
 		"key": "User-Agent",
-#		"value": "curl"
 		"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36",
 	},
 	{
@@ -37,7 +36,6 @@ var default_request_headers : Array = [
 	},
 	{
 		"key": "Accept",
-#		"value": "text/html, application/xhtml+xml, application/json, application/xml;q=0.9,*/*;q=0.8",
 		"value": "*/*",
 	},
 	{
