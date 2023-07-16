@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://lswcttpuygq8"]
+[gd_scene load_steps=8 format=3 uid="uid://lswcttpuygq8"]
 
 [ext_resource type="StyleBox" uid="uid://ck2m7kk3hxvvv" path="res://addons/godotreq/resources/tab_options.tres" id="1_t7pup"]
 [ext_resource type="Script" path="res://addons/godotreq/src/ui/response_container/response_container.gd" id="1_xxxpq"]
 [ext_resource type="StyleBox" uid="uid://dtbrxnt1x7sxx" path="res://addons/godotreq/resources/tab_options_without_border.tres" id="2_syt0v"]
 [ext_resource type="StyleBox" uid="uid://bcendjqb5xh5v" path="res://addons/godotreq/resources/tab_response_active.tres" id="4_aarqq"]
+[ext_resource type="PackedScene" uid="uid://bed6r5fcm4y2p" path="res://addons/godotreq/src/ui/response_image_preview/response_image_preveiew.tscn" id="5_50n57"]
 [ext_resource type="PackedScene" uid="uid://je0cb56f0a0g" path="res://addons/godotreq/src/ui/table_component/table_component.tscn" id="5_htq4a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4cjn"]
@@ -114,29 +115,13 @@ gutters_draw_fold_gutter = true
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Not Available"
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 500)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
+[node name="MarginContainer" parent="HBoxContainer/PanelContainer/TabContainer/Body/MarginContainer/TabContainer/Preview" instance=ExtResource("5_50n57")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Headers" type="TabBar" parent="HBoxContainer/PanelContainer/TabContainer"]
 visible = false

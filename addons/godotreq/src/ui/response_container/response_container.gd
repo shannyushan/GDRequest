@@ -195,10 +195,7 @@ func _set_response_data(p_body: PackedByteArray, p_content_type: String ) -> voi
 		if image == null:
 			return
 		
-		var image_texture: ImageTexture = ImageTexture.new()
-		
-		image_texture.create_from_image(image)
-		
+		var image_texture: ImageTexture = ImageTexture.create_from_image(image)
 		_preview_image.texture = image_texture
 
 
